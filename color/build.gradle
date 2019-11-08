@@ -5,6 +5,8 @@ apply from: '../dependencies.gradle'
 ext.shard = 'color'
 apply from: '../bintrayconfig.gradle'
 
+apply from: '../jitpackconfig.gradle'
+
 android {
   compileSdkVersion versions.compileSdk
   buildToolsVersion versions.buildTools

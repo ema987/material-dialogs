@@ -11,6 +11,7 @@ ext.versions = [
     spotlessPlugin      : '3.24.2',
     versionPlugin       : '0.24.0',
     bintrayPlugin       : '0.9.1',
+    jitpackMavenGradlePlugin: '2.1',
 
     // AndroidX
     androidxCore        : '1.1.0',
