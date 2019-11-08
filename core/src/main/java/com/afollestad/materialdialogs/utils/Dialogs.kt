@@ -18,6 +18,7 @@ package com.afollestad.materialdialogs.utils
 import android.content.Context.INPUT_METHOD_SERVICE
 import android.graphics.Typeface
 import android.graphics.drawable.Drawable
+import android.view.Gravity
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
@@ -82,7 +83,8 @@ internal fun MaterialDialog.populateText(
   text: CharSequence? = null,
   @StringRes fallback: Int = 0,
   typeface: Typeface?,
-  textColor: Int? = null
+  textColor: Int? = null,
+  textAlignment: Int? = null
 ) {
   val value = text ?: resolveString(this, textRes, fallback)
   if (value != null) {
@@ -93,6 +95,9 @@ internal fun MaterialDialog.populateText(
       textView.typeface = typeface
     }
     textView.maybeSetTextColor(windowContext, textColor)
+    textAlignment?.let {
+      textView.textAlignment = it
+    }
   } else {
     textView.visibility = View.GONE
   }
