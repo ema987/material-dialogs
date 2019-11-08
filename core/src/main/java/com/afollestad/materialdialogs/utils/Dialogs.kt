@@ -18,7 +18,6 @@ package com.afollestad.materialdialogs.utils
 import android.content.Context.INPUT_METHOD_SERVICE
 import android.graphics.Typeface
 import android.graphics.drawable.Drawable
-import android.view.Gravity
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
