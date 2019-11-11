@@ -82,7 +82,8 @@ internal fun MaterialDialog.populateText(
   text: CharSequence? = null,
   @StringRes fallback: Int = 0,
   typeface: Typeface?,
-  textColor: Int? = null,
+  attrTextColor: Int? = null,
+  resTextColor: Int? = null,
   textAlignment: Int? = null
 ) {
   val value = text ?: resolveString(this, textRes, fallback)
@@ -93,7 +94,7 @@ internal fun MaterialDialog.populateText(
     if (typeface != null) {
       textView.typeface = typeface
     }
-    textView.maybeSetTextColor(windowContext, textColor)
+    textView.maybeSetTextColor(windowContext, attrRes = attrTextColor, colorRes = resTextColor)
     textAlignment?.let {
       textView.textAlignment = it
     }

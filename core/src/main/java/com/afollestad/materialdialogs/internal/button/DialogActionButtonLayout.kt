@@ -66,6 +66,8 @@ class DialogActionButtonLayout(
   lateinit var actionButtons: Array<DialogActionButton>
   lateinit var checkBoxPrompt: AppCompatCheckBox
 
+  internal var ignoreTheming: Boolean = false
+
   val visibleButtons: Array<DialogActionButton>
     get() = actionButtons.filter { it.isVisible() }
         .toTypedArray()
@@ -111,7 +113,8 @@ class DialogActionButtonLayout(
       button.update(
           baseContext = baseContext,
           appContext = appContext,
-          stacked = stackButtons
+          stacked = stackButtons,
+          ignoreTheming = ignoreTheming
       )
       if (stackButtons) {
         button.measure(
@@ -137,7 +140,8 @@ class DialogActionButtonLayout(
           button.update(
               baseContext = baseContext,
               appContext = appContext,
-              stacked = true
+              stacked = true,
+              ignoreTheming = ignoreTheming
           )
           button.measure(
               makeMeasureSpec(parentWidth, EXACTLY),

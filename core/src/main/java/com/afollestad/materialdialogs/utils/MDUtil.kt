@@ -208,16 +208,28 @@ object MDUtil {
   @RestrictTo(LIBRARY_GROUP) fun TextView?.maybeSetTextColor(
     context: Context,
     @AttrRes attrRes: Int?,
-    @AttrRes hintAttrRes: Int? = null
+    @AttrRes hintAttrRes: Int? = null,
+    @ColorRes colorRes: Int? = null,
+    @ColorRes hintColorRes: Int? = null
   ) {
-    if (this == null || (attrRes == null && hintAttrRes == null)) return
+    if (this == null || (attrRes == null && hintAttrRes == null && colorRes == null && hintColorRes == null)) return
+    assertOnlyOneSet("Only attrsRes or colorRes can me set!", attrRes, colorRes)
+    assertOnlyOneSet("Only hintAttrsRes or hintColorRes can be set!", hintAttrRes, hintColorRes)
     if (attrRes != null) {
       resolveColor(context, attr = attrRes)
           .ifNotZero(this::setTextColor)
     }
+    if (colorRes != null) {
+      resolveColor(context, res = colorRes)
+              .ifNotZero(this::setTextColor)
+    }
     if (hintAttrRes != null) {
       resolveColor(context, attr = hintAttrRes)
           .ifNotZero(this::setHintTextColor)
+    }
+    if (hintColorRes != null) {
+      resolveColor(context, res = colorRes)
+              .ifNotZero(this::setHintTextColor)
     }
   }
 
@@ -327,6 +339,10 @@ object MDUtil {
     if (a == null && b == null) {
       throw IllegalArgumentException("$method: You must specify a resource ID or literal value")
     }
+  }
+
+  @RestrictTo(LIBRARY_GROUP) fun assertOnlyOneSet(message: String, a: Any?, b: Any?) {
+    require(!(a != null && b != null)) { message }
   }
 
   @RestrictTo(LIBRARY_GROUP) fun Context.getStringArray(@ArrayRes res: Int?): Array<String> {

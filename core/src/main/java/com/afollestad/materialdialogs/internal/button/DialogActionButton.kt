@@ -58,7 +58,8 @@ class DialogActionButton(
   internal fun update(
     baseContext: Context,
     appContext: Context,
-    stacked: Boolean
+    stacked: Boolean,
+    ignoreTheming: Boolean
   ) {
     // Casing
     val casing = resolveInt(
@@ -68,34 +69,38 @@ class DialogActionButton(
     )
     setSupportAllCaps(casing == CASING_UPPER)
 
-    // Text color
-    val isLightTheme = inferThemeIsLight(appContext)
-    enabledColor = resolveColor(appContext, attr = R.attr.md_color_button_text) {
-      resolveColor(appContext, attr = R.attr.colorPrimary)
-    }
-    val disabledColorRes =
-      if (isLightTheme) R.color.md_disabled_text_light_theme
-      else R.color.md_disabled_text_dark_theme
-    disabledColor = resolveColor(baseContext, res = disabledColorRes)
-    setTextColor(enabledColor)
-
-    // Selector
-    val bgDrawable = resolveDrawable(baseContext, attr = R.attr.md_button_selector)
-    if (SDK_INT >= LOLLIPOP && bgDrawable is RippleDrawable) {
-      resolveColor(context = baseContext, attr = R.attr.md_ripple_color) {
-        resolveColor(appContext, attr = R.attr.colorPrimary).adjustAlpha(.12f)
-      }.ifNotZero {
-        bgDrawable.setColor(valueOf(it))
+    if (!ignoreTheming) {
+      // Text color
+      val isLightTheme = inferThemeIsLight(appContext)
+      enabledColor = resolveColor(appContext, attr = R.attr.md_color_button_text) {
+        resolveColor(appContext, attr = R.attr.colorPrimary)
       }
+      val disabledColorRes =
+              if (isLightTheme) R.color.md_disabled_text_light_theme
+              else R.color.md_disabled_text_dark_theme
+      disabledColor = resolveColor(baseContext, res = disabledColorRes)
+      setTextColor(enabledColor)
     }
-    background = bgDrawable
 
-    // Text alignment
-    if (stacked) setGravityEndCompat()
-    else gravity = CENTER
+      // Selector
+      val bgDrawable = resolveDrawable(baseContext, attr = R.attr.md_button_selector)
+      if (SDK_INT >= LOLLIPOP && bgDrawable is RippleDrawable) {
+        resolveColor(context = baseContext, attr = R.attr.md_ripple_color) {
+          resolveColor(appContext, attr = R.attr.colorPrimary).adjustAlpha(.12f)
+        }.ifNotZero {
+          bgDrawable.setColor(valueOf(it))
+        }
+      }
+      background = bgDrawable
 
-    // Invalidate in case enabled state was changed before this method executed
-    isEnabled = isEnabled
+      // Text alignment
+      if (stacked) setGravityEndCompat()
+      else gravity = CENTER
+
+      // Invalidate in case enabled state was changed before this method executed
+    if (!ignoreTheming) {
+      isEnabled = isEnabled
+    }
   }
 
   fun updateTextColor(@ColorInt color: Int) {
