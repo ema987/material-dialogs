@@ -31,6 +31,7 @@ import androidx.annotation.DimenRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.Px
 import androidx.annotation.StringRes
+import androidx.annotation.ColorRes
 import com.afollestad.materialdialogs.WhichButton.NEGATIVE
 import com.afollestad.materialdialogs.WhichButton.NEUTRAL
 import com.afollestad.materialdialogs.WhichButton.POSITIVE
@@ -160,7 +161,7 @@ class MaterialDialog(
         textRes = res,
         text = text,
         typeface = this.titleFont,
-        textColor = R.attr.md_color_title,
+        attrTextColor = R.attr.md_color_title,
         textAlignment = textAlignment
     )
     return this
@@ -198,6 +199,7 @@ class MaterialDialog(
   fun positiveButton(
     @StringRes res: Int? = null,
     text: CharSequence? = null,
+    @ColorRes resTextColor: Int? = null,
     click: DialogCallback? = null
   ): MaterialDialog {
     if (click != null) {
@@ -217,8 +219,10 @@ class MaterialDialog(
         text = text,
         fallback = android.R.string.ok,
         typeface = this.buttonFont,
-        textColor = R.attr.md_color_button_text
+        attrTextColor = if (resTextColor != null) null else R.attr.md_color_button_text,
+        resTextColor = resTextColor
     )
+    view.buttonsLayout?.ignoreTheming = resTextColor != null
     return this
   }
 
@@ -239,6 +243,7 @@ class MaterialDialog(
   fun negativeButton(
     @StringRes res: Int? = null,
     text: CharSequence? = null,
+    @ColorRes resTextColor: Int? = null,
     click: DialogCallback? = null
   ): MaterialDialog {
     if (click != null) {
@@ -258,7 +263,8 @@ class MaterialDialog(
         text = text,
         fallback = android.R.string.cancel,
         typeface = this.buttonFont,
-        textColor = R.attr.md_color_button_text
+        attrTextColor = if (resTextColor != null) null else R.attr.md_color_button_text,
+        resTextColor = resTextColor
     )
     return this
   }
