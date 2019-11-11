@@ -194,12 +194,14 @@ class MaterialDialog(
    *
    * @param res The string resource to display on the title.
    * @param text The literal string to display on the button.
+   * @param resTextDimen The dimen resource to set as dimen of the button
    * @param click A listener to invoke when the button is pressed.
    */
   fun positiveButton(
     @StringRes res: Int? = null,
     text: CharSequence? = null,
     @ColorRes resTextColor: Int? = null,
+    @DimenRes resTextDimen: Int? = null,
     click: DialogCallback? = null
   ): MaterialDialog {
     if (click != null) {
@@ -220,7 +222,8 @@ class MaterialDialog(
         fallback = android.R.string.ok,
         typeface = this.buttonFont,
         attrTextColor = if (resTextColor != null) null else R.attr.md_color_button_text,
-        resTextColor = resTextColor
+        resTextColor = resTextColor,
+        resTextDimen = resTextDimen
     )
     view.buttonsLayout?.ignoreTheming = resTextColor != null
     return this
@@ -238,12 +241,14 @@ class MaterialDialog(
    *
    * @param res The string resource to display on the title.
    * @param text The literal string to display on the button.
+   * @param resTextDimen The dimen resource to set as dimen of the button
    * @param click A listener to invoke when the button is pressed.
    */
   fun negativeButton(
     @StringRes res: Int? = null,
     text: CharSequence? = null,
     @ColorRes resTextColor: Int? = null,
+    @DimenRes resTextDimen: Int? = null,
     click: DialogCallback? = null
   ): MaterialDialog {
     if (click != null) {
@@ -264,7 +269,8 @@ class MaterialDialog(
         fallback = android.R.string.cancel,
         typeface = this.buttonFont,
         attrTextColor = if (resTextColor != null) null else R.attr.md_color_button_text,
-        resTextColor = resTextColor
+        resTextColor = resTextColor,
+        resTextDimen = resTextDimen
     )
     return this
   }
