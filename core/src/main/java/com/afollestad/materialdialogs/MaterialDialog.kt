@@ -176,6 +176,7 @@ class MaterialDialog(
   fun message(
     @StringRes res: Int? = null,
     text: CharSequence? = null,
+    textAlignment: Int? = null,
     applySettings: (DialogMessageSettings.() -> Unit)? = null
   ): MaterialDialog {
     assertOneSet("message", text, res)
@@ -184,6 +185,7 @@ class MaterialDialog(
         res = res,
         text = text,
         typeface = this.bodyFont,
+        textAlignment = textAlignment,
         applySettings = applySettings
     )
     return this
