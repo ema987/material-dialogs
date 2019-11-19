@@ -76,6 +76,7 @@ class DialogContentLayout(
     @StringRes res: Int?,
     text: CharSequence?,
     typeface: Typeface?,
+    textAlignment: Int? = null,
     applySettings: (DialogMessageSettings.() -> Unit)?
   ) {
     addContentScrollView()
@@ -92,6 +93,9 @@ class DialogContentLayout(
       typeface?.let { this.typeface = it }
       maybeSetTextColor(dialog.windowContext, R.attr.md_color_content)
       messageSettings.setText(res, text)
+      textAlignment?.let {
+        this.textAlignment = it
+      }
     }
   }
 
