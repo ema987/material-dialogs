@@ -18,7 +18,6 @@ package com.afollestad.materialdialogs.internal.main
 import android.content.Context
 import android.graphics.Canvas
 import android.util.AttributeSet
-import android.view.View.MeasureSpec.AT_MOST
 import android.view.View.MeasureSpec.EXACTLY
 import android.view.View.MeasureSpec.UNSPECIFIED
 import android.view.View.MeasureSpec.getSize
@@ -91,7 +90,7 @@ class DialogTitleLayout(
     }
 
     titleView.measure(
-        makeMeasureSpec(titleMaxWidth, AT_MOST),
+        makeMeasureSpec(titleMaxWidth, EXACTLY),
         makeMeasureSpec(0, UNSPECIFIED)
     )
 
