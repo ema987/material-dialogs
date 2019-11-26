@@ -274,6 +274,7 @@ class MaterialDialog(
         resTextColor = resTextColor,
         resTextDimen = resTextDimen
     )
+    view.buttonsLayout?.ignoreTheming = resTextColor != null
     return this
   }
 
