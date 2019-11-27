@@ -45,12 +45,14 @@
     <item name="android:layout_height">56dp</item>
     <item name="android:scaleType">fitCenter</item>
     <item name="android:visibility">gone</item>
+    <item name="android:includeFontPadding">@bool/md_include_font_padding</item>
   </style>
 
   <style name="MD_Dialog_Title_Text">
     <item name="android:textColor">?android:textColorPrimary</item>
     <item name="android:textSize">@dimen/md_title_textsize</item>
     <item name="android:fontFamily">sans-serif-medium</item>
+    <item name="android:includeFontPadding">@bool/md_include_font_padding</item>
   </style>
 
   <style name="MD_Dialog_Message">
@@ -61,6 +63,7 @@
     <item name="android:textSize">@dimen/md_message_textsize</item>
     <item name="android:paddingLeft">@dimen/md_dialog_frame_margin_horizontal</item>
     <item name="android:paddingRight">@dimen/md_dialog_frame_margin_horizontal</item>
+    <item name="android:includeFontPadding">@bool/md_include_font_padding</item>
   </style>
 
   <style name="MD_Dialog_ScrollView_FrameContent">
@@ -81,6 +84,7 @@
     <item name="android:paddingLeft">@dimen/md_action_button_padding_horizontal</item>
     <item name="android:paddingRight">@dimen/md_action_button_padding_horizontal</item>
     <item name="android:textAllCaps">false</item>
+    <item name="android:includeFontPadding">@bool/md_include_font_padding</item>
   </style>
 
   <style name="MD_Dialog_CheckPrompt">
@@ -114,6 +118,7 @@
     <item name="android:layout_marginEnd">@dimen/md_dialog_frame_margin_horizontal</item>
     <item name="android:textSize">@dimen/md_listitem_textsize</item>
     <item name="android:textColor">@color/md_list_item_textcolor</item>
+    <item name="android:includeFontPadding">@bool/md_include_font_padding</item>
   </style>
 
   <style name="MD_ListItem.Choice">
@@ -151,6 +156,7 @@
     <item name="android:textColor">@color/md_list_item_textcolor</item>
     <item name="android:layout_marginTop">0dp</item>
     <item name="android:layout_marginBottom">0dp</item>
+    <item name="android:includeFontPadding">@bool/md_include_font_padding</item>
   </style>
 
 </resources>
